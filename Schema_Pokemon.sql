@@ -122,6 +122,20 @@ CREATE TABLE `objetos_inventario` (
     REFERENCES `objetos` (`id_objetos`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+CREATE TABLE `pokemon_personaje` (
+  `id_pokemon` INT NOT NULL,
+  `id_personaje` INT NOT NULL,
+  INDEX `id_pokemon_idx` (`id_pokemon` ASC) VISIBLE,
+  INDEX `id_personaje_idx` (`id_personaje` ASC) VISIBLE,
+    FOREIGN KEY (`id_pokemon`)
+    REFERENCES `pokemon`.`pokemon` (`id_pokemon`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    FOREIGN KEY (`id_personaje`)
+    REFERENCES `pokemon`.`personajes` (`id_personaje`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
     
     ALTER TABLE `pokemon` 
 ADD INDEX `id_piedra_evolucion_idx` (`id_piedra_evolucion` ASC) VISIBLE;
@@ -220,6 +234,13 @@ INSERT INTO objetos_inventario (id_inventario, id_objeto) VALUES
 (3, 4),
 (2, 12),
 (2, 13);
+
+INSERT INTO pokemon_personaje (id_pokemon, id_personaje) VALUES
+(1, 4),
+(2, 4),
+(3, 4),
+(1, 1),
+(5, 1);
 
 INSERT INTO ataques (id_ataque, id_pokemon, nombre, maximo_daño) VALUES
 (1, 1, 'Llamarada', 60),
