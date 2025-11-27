@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS ubicaciones;
 DROP TABLE IF EXISTS objetos_de_la_ubicacion;
 DROP TABLE IF EXISTS eventos;
 DROP TABLE IF EXISTS inventarios;
+DROP TABLE IF EXISTS objetos_inventario;
+DROP TABLE IF EXISTS pokemon_personaje;
 DROP TABLE IF EXISTS ataques;
 
 -- =====================================================
@@ -110,14 +112,8 @@ CREATE TABLE `ataques` (
 CREATE TABLE `objetos_inventario` (
   `id_objeto` INT NULL,
   `id_inventario` INT NOT NULL,
-  `id_pokemon` INT NULL,
-  INDEX `id_pokemon_idx` (`id_pokemon` ASC) VISIBLE,
   INDEX `id_inventario_idx` (`id_inventario` ASC) VISIBLE,
   INDEX `id_objeto_idx` (`id_objeto` ASC) VISIBLE,
-    FOREIGN KEY (`id_pokemon`)
-    REFERENCES `pokemon` (`id_pokemon`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
     FOREIGN KEY (`id_inventario`)
     REFERENCES `inventarios` (`id_inventario`)
     ON DELETE NO ACTION
@@ -217,13 +213,13 @@ INSERT INTO pokemon (id_pokemon, nombre, tipo, vida, id_evolucion, id_piedra_evo
 (2, 'Staryu', 'Agua', 110, 5, 12),
 (3, 'Nidoran', 'Veneno', 120, 6, 13);
 
-INSERT INTO objetos_inventario (id_inventario, id_objeto, id_pokemon) VALUES
-(1, 1, 1),
-(3, 1, 5),
-(1, 8, NULL),
-(3, 4, NULL),
-(2, 12, NULL),
-(2, 13, NULL);
+INSERT INTO objetos_inventario (id_inventario, id_objeto) VALUES
+(1, 1),
+(3, 1),
+(1, 8),
+(3, 4),
+(2, 12),
+(2, 13);
 
 INSERT INTO ataques (id_ataque, id_pokemon, nombre, maximo_daño) VALUES
 (1, 1, 'Llamarada', 60),
