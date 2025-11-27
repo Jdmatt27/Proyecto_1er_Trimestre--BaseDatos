@@ -14,25 +14,25 @@ DROP TABLE IF EXISTS ataques;
 -- CREACIÓN DE TABLAS
 -- =====================================================
 
-CREATE TABLE `pokemon`.`personajes` (
+CREATE TABLE `personajes` (
   `id_personaje` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `rol` VARCHAR(45) NULL,
   `descripcion` VARCHAR(45) NULL,
   PRIMARY KEY (`id_personaje`));
   
-  CREATE TABLE `pokemon`.`objetos` (
+  CREATE TABLE `objetos` (
   `id_objetos` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_objetos`));
   
-  CREATE TABLE `pokemon`.`ubicaciones` (
+  CREATE TABLE `ubicaciones` (
   `id_ubicacion` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_ubicacion`));
 
-CREATE TABLE `pokemon`.`pokemon` (
+CREATE TABLE `pokemon` (
   `id_pokemon` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
@@ -41,23 +41,23 @@ CREATE TABLE `pokemon`.`pokemon` (
   `id_piedra_evolucion` INT NULL,
   PRIMARY KEY (`id_pokemon`));
 
-CREATE TABLE `pokemon`.`ubicacion_objetos` (
+CREATE TABLE `ubicacion_objetos` (
   `id_objeto` INT NOT NULL,
   `id_ubicacion` INT NOT NULL,
   INDEX `id_objeto_idx` (`id_objeto` ASC) VISIBLE,
   INDEX `id_ubicacion_idx` (`id_ubicacion` ASC) VISIBLE,
   CONSTRAINT `id_objeto`
     FOREIGN KEY (`id_objeto`)
-    REFERENCES `pokemon`.`objetos` (`id_objetos`)
+    REFERENCES `objetos` (`id_objetos`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `id_ubicacion`
     FOREIGN KEY (`id_ubicacion`)
-    REFERENCES `pokemon`.`ubicaciones` (`id_ubicacion`)
+    REFERENCES `ubicaciones` (`id_ubicacion`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `pokemon`.`eventos` (
+CREATE TABLE `eventos` (
   `id_evento` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `tipo_recomendado` VARCHAR(45) NULL,
@@ -70,31 +70,31 @@ CREATE TABLE `pokemon`.`eventos` (
   INDEX `id_ubicacion_idx` (`id_ubicacion` ASC) VISIBLE,
   CONSTRAINT `id_objeto_usable`
     FOREIGN KEY (`id_objeto_usable`)
-    REFERENCES `pokemon`.`objetos` (`id_objetos`)
+    REFERENCES `objetos` (`id_objetos`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `id_personaje_involucrado`
     FOREIGN KEY (`id_personaje_involucrado`)
-    REFERENCES `pokemon`.`personajes` (`id_personaje`)
+    REFERENCES `personajes` (`id_personaje`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
       FOREIGN KEY (`id_ubicacion`)
-    REFERENCES `pokemon`.`ubicaciones` (`id_ubicacion`)
+    REFERENCES `ubicaciones` (`id_ubicacion`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `pokemon`.`inventarios` (
+CREATE TABLE `inventarios` (
   `id_inventario` INT NOT NULL AUTO_INCREMENT,
   `id_personaje` INT NOT NULL,
   PRIMARY KEY (`id_inventario`),
   INDEX `id_personaje_idx` (`id_personaje` ASC) VISIBLE,
   CONSTRAINT `id_personaje`
     FOREIGN KEY (`id_personaje`)
-    REFERENCES `pokemon`.`personajes` (`id_personaje`)
+    REFERENCES `personajes` (`id_personaje`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `pokemon`.`ataques` (
+CREATE TABLE `ataques` (
   `id_ataque` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `id_pokemon` INT NOT NULL,
@@ -103,11 +103,11 @@ CREATE TABLE `pokemon`.`ataques` (
   INDEX `id_pokemon_idx` (`id_pokemon` ASC) VISIBLE,
   CONSTRAINT `id_pokemon`
     FOREIGN KEY (`id_pokemon`)
-    REFERENCES `pokemon`.`pokemon` (`id_pokemon`)
+    REFERENCES `pokemon` (`id_pokemon`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `pokemon`.`objetos_inventario` (
+CREATE TABLE `objetos_inventario` (
   `id_objeto` INT NULL,
   `id_inventario` INT NOT NULL,
   `id_pokemon` INT NULL,
@@ -115,35 +115,35 @@ CREATE TABLE `pokemon`.`objetos_inventario` (
   INDEX `id_inventario_idx` (`id_inventario` ASC) VISIBLE,
   INDEX `id_objeto_idx` (`id_objeto` ASC) VISIBLE,
     FOREIGN KEY (`id_pokemon`)
-    REFERENCES `pokemon`.`pokemon` (`id_pokemon`)
+    REFERENCES `pokemon` (`id_pokemon`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
     FOREIGN KEY (`id_inventario`)
-    REFERENCES `pokemon`.`inventarios` (`id_inventario`)
+    REFERENCES `inventarios` (`id_inventario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
     FOREIGN KEY (`id_objeto`)
-    REFERENCES `pokemon`.`objetos` (`id_objetos`)
+    REFERENCES `objetos` (`id_objetos`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
-    ALTER TABLE `pokemon`.`pokemon` 
+    ALTER TABLE `pokemon` 
 ADD INDEX `id_piedra_evolucion_idx` (`id_piedra_evolucion` ASC) VISIBLE;
 ;
-ALTER TABLE `pokemon`.`pokemon` 
+ALTER TABLE `pokemon` 
 ADD CONSTRAINT `id_piedra_evolucion`
   FOREIGN KEY (`id_piedra_evolucion`)
-  REFERENCES `pokemon`.`objetos` (`id_objetos`)
+  REFERENCES `objetos` (`id_objetos`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
-ALTER TABLE `pokemon`.`pokemon` 
+ALTER TABLE `pokemon` 
 ADD INDEX `id_evolucion_idx` (`id_evolucion` ASC) VISIBLE;
 ;
-ALTER TABLE `pokemon`.`pokemon` 
+ALTER TABLE `pokemon` 
 ADD CONSTRAINT `id_evolucion`
   FOREIGN KEY (`id_evolucion`)
-  REFERENCES `pokemon`.`pokemon` (`id_pokemon`)
+  REFERENCES `pokemon` (`id_pokemon`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
@@ -192,7 +192,7 @@ INSERT INTO ubicacion_objetos (id_objeto, id_ubicacion) VALUES
 (12, 2),
 (13, 3),
 (8, 6);
-INSERT INTO inventarioS (id_inventario, id_personaje) VALUES
+INSERT INTO inventarios (id_inventario, id_personaje) VALUES
 (1, 1),
 (2, 4),
 (3, 3),
