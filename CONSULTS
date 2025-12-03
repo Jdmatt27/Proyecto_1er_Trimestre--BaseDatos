@@ -1,0 +1,61 @@
+
+/*1. Mostrar los Pokémon de cada personaje*/
+SELECT p.nombre AS pokemon, pe.nombre AS personaje
+FROM pokemon p
+JOIN pokemon_personaje pp ON p.id_pokemon = pp.id_pokemon
+JOIN personajes pe ON pe.id_personaje = pp.id_personaje;
+
+/*2. Listar los objetos que tiene cada personaje (pasando por inventario)*/
+SELECT per.nombre AS personaje, obj.nombre AS objeto
+FROM personajes per
+JOIN inventarios inv ON per.id_personaje = inv.id_personaje
+JOIN objetos_inventario oi ON inv.id_inventario = oi.id_inventario
+JOIN objetos obj ON oi.id_objeto = obj.id_objetos;
+
+/*3. Eventos con su ubicación y personaje involucrado*/
+SELECT e.nombre AS evento, u.nombre AS ubicacion, p.nombre AS personaje_involucrado
+FROM eventos e
+JOIN ubicaciones u ON e.id_ubicacion = u.id_ubicacion
+LEFT JOIN personajes p ON e.id_personaje_involucrado = p.id_personaje;
+
+/*4. Pokémon con su evolución y la piedra necesaria*/
+SELECT p.nombre AS pokemon,
+       evo.nombre AS evolucion,
+       o.nombre AS piedra_evolucion
+FROM pokemon p
+LEFT JOIN pokemon evo ON p.id_evolucion = evo.id_pokemon
+LEFT JOIN objetos o ON p.id_piedra_evolucion = o.id_objetos;
+
+/*5. Mostrar los ataques de cada Pokémon*/
+SELECT po.nombre AS pokemon, a.nombre AS ataque, a.maximo_daño
+FROM ataques a
+JOIN pokemon po ON a.id_pokemon = po.id_pokemon;
+
+/*6. Objetos disponibles en cada ubicación*/
+SELECT u.nombre AS ubicacion, o.nombre AS objeto
+FROM ubicacion_objetos uo
+JOIN ubicaciones u ON uo.id_ubicacion = u.id_ubicacion
+JOIN objetos o ON uo.id_objeto = o.id_objetos;
+
+/*Consultas con GROUP BY*/
+/*7. Número de objetos por inventario*/
+SELECT id_inventario, COUNT(id_objeto) AS cantidad_objetos
+FROM objetos_inventario
+GROUP BY id_inventario;
+
+/*8. Número de ataques por Pokémon*/
+SELECT p.nombre AS pokemon, COUNT(a.id_ataque) AS total_ataques
+FROM pokemon p
+JOIN ataques a ON p.id_pokemon = a.id_pokemon
+GROUP BY p.id_pokemon;
+
+/*Consultas libres*/
+/*9. Pokémon con más de 150 de vida*/
+SELECT nombre, tipo, vida
+FROM pokemon
+WHERE vida > 150;
+
+/*10. Objetos que son de tipo “Piedra evolución”*/
+SELECT nombre
+FROM objetos
+WHERE tipo = 'Piedra evolucion';
