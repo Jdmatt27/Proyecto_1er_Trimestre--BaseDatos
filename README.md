@@ -14,25 +14,23 @@ Este repositorio contiene la base de datos correspondiente a la parte del proyec
 - `pokemon_personaje`
 - `ataques`
 
-Se ha diseñado un **modelo entidad-relación (MER)** que muestra todas las tablas y sus relaciones, incluyendo relaciones muchos a muchos (N-N) mediante tablas intermedias (`objetos_de_la_ubicacion` y `pokemon_personaje`) y una relación reflexiva entre `pokemon` y su evolución.  
+Se ha diseñado un **modelo entidad-relación** que muestra todas las tablas y sus relaciones, incluyendo relaciones muchos a muchos (N-N) mediante tablas intermedias (`objetos_de_la_ubicacion` y `pokemon_personaje`) y una relación reflexiva entre `pokemon` y su evolución.  
 
-También se incluyen 10 consultas de ejemplo que simulan consultas que el juego podría realizar en tiempo real.
+También se incluyen 22 consultas de ejemplo que simulan consultas que el juego podría realizar en tiempo real.
 
 ## Tecnologías utilizadas
 
-- **MySQL**: Sistema de gestión de bases de datos relacional (RDBMS).  
+- **MySQL**: Sistema de gestión de bases de datos relacional.  
 - **SQL**: Lenguaje de consulta para creación, manipulación y consulta de datos.  
-- **Herramienta de modelado ER**: Para diseñar el modelo entidad-relación (puede ser MySQL Workbench, Lucidchart, etc.).  
+- **Draw.io**: Para diseñar el modelo entidad-relación.  
 - **Git y GitHub**: Para control de versiones y alojamiento del repositorio.  
 
 ## Requisitos del proyecto
 
-- **MySQL Server** instalado (versión recomendada: 8.0 o superior).  
+- **MySQL Server** instalado.  
 - **Cliente de MySQL** o herramienta como MySQL Workbench.  
 - **Acceso a Git** para clonar el repositorio.  
 - **Sistema operativo compatible**: Windows, macOS o Linux.  
-
-Opcional: herramienta de visualización de diagramas ER para explorar el modelo entidad-relación.
 
 ## Despliegue de la base de datos
 
@@ -61,9 +59,9 @@ Para probar y ejecutar la base de datos:
 3. **Ejecutar consultas de prueba**
 4. **Verificar resultados** de las consultas para comprobar que los datos y relaciones funcionan correctamente.  
 
-## Modelo Entidad-Relación (MER)
+## Modelo Entidad-Relación
 
-A continuación se incluye la imagen del MER que representa la estructura de la base de datos y las relaciones entre las tablas:
+A continuación se incluye la imagen del Modelo Entidad-Relación que representa la estructura de la base de datos y las relaciones entre las tablas:
 
 <img width="1268" height="834" alt="Diagrama ER-Pokemon" src="https://github.com/user-attachments/assets/87920584-2f9f-4f4a-8391-774117502a45" />
 
