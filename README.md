@@ -92,7 +92,7 @@ A continuación se incluye la imagen del MER que representa la estructura de la 
 
 ## Consultas de prueba
 
-Se incluyen 10 consultas SQL de ejemplo para probar la base de datos y verificar su funcionamiento. Estas consultas simulan la información que podría requerir el juego en distintos escenarios.
+Se incluyen 22 consultas SQL de ejemplo para probar la base de datos y verificar su funcionamiento. Estas consultas simulan la información que podría requerir el juego en distintos escenarios.
 
 ## Autores
 
